@@ -1,15 +1,26 @@
-import { Component, OnInit } from '@angular/core';
+import {Component} from '@angular/core';
+
+export interface Address {
+  city: string;
+  street: string;
+  house: number;
+}
 
 @Component({
   selector: 'app-parent',
   templateUrl: './parent.component.html',
   styleUrls: ['./parent.component.scss']
 })
-export class ParentComponent implements OnInit {
+export class ParentComponent {
 
-  constructor() { }
+ name = 'Ivan';
+ surname = 'Petrov';
+ city = 'Minsk';
 
-  ngOnInit(): void {
-  }
+ address: Address = {
+   city: 'Minsk',
+   street: 'Platonova',
+   house: 49,
+ }
 
 }
