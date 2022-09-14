@@ -1,6 +1,16 @@
 <div>
-  <app-child (sendGradeEvent)="getGrade($event)"></app-child>
-  {{grades | json}}
-<!--  math: {{math}}-->
-<!--  physic: {{physic}}-->
+<!--  <app-child (sendGradeEvent)="getGrade($event)"></app-child>-->
+<!--  <div *ngFor="let el of grades; index as i; count as count">-->
+<!--    <p>{{el}}; index: {{i}}; count: {{count}}</p>-->
+<!--  </div>-->
+
+  <div *ngFor="let lesson of lessons">
+    <div>
+      <h3>{{lesson.title}}</h3>
+      <div>
+        <h3>Week grades:</h3>
+        <p *ngFor="let grade of lesson.weekGrades">{{grade.grade}}</p>
+      </div>
+    </div>
+  </div>
 </div>
