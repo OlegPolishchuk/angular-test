@@ -1,18 +1,9 @@
-<div *ngIf="isLoading; else elseBlock">
-  <h2>Loading...</h2>
+
+<input type="text" [(ngModel)]="value" />
+
+<div [ngSwitch]="value">
+  <div *ngSwitchCase="'1'">One</div>
+  <div *ngSwitchCase="'2'">Two</div>
+  <div *ngSwitchCase="'3'">Three</div>
+  <div *ngSwitchDefault>Default</div>
 </div>
-
-<ng-template #elseBlock>
-  <div>
-    <div *ngFor="let lesson of lessons">
-      <div>
-        <h3>{{lesson.title}}</h3>
-        <div>
-          <h3>Week grades:</h3>
-          <p *ngFor="let grade of lesson.weekGrades">{{grade.grade}}</p>
-        </div>
-      </div>
-    </div>
-  </div>
-</ng-template>
-
