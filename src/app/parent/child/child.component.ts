@@ -12,7 +12,9 @@ export interface Grade {
 })
 export class ChildComponent {
 
-  @Output() sendGradeEvent = new EventEmitter<Grade>()
+  @Output() sendGradeEvent = new EventEmitter<string>()
+
+  inputGrade = '';
 
   handleSendEvent() {
     // const grade = 5;
@@ -20,6 +22,6 @@ export class ChildComponent {
       math: 5,
       physic: 4,
     }
-    this.sendGradeEvent.emit(grade);
+    this.sendGradeEvent.emit(this.inputGrade);
   }
 }

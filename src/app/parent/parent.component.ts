@@ -13,12 +13,10 @@ export interface Address {
   styleUrls: ['./parent.component.scss']
 })
 export class ParentComponent {
-  math?: number;
-  physic?: number;
+  grades: string[] = [];
 
-  getGrade(value: Grade){
-    this.math = value.math;
-    this.physic = value.physic;
+  getGrade(value: string){
+    this.grades.push(value)
   }
 
 }

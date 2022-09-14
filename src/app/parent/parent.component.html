@@ -1,5 +1,6 @@
 <div>
   <app-child (sendGradeEvent)="getGrade($event)"></app-child>
-  math: {{math}}
-  physic: {{physic}}
+  {{grades | json}}
+<!--  math: {{math}}-->
+<!--  physic: {{physic}}-->
 </div>
