@@ -1,5 +1,9 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {Address} from "src/app/parent/parent.component";
+import {Component, EventEmitter, Output} from '@angular/core';
+
+export interface Grade {
+  math: number;
+  physic: number;
+}
 
 @Component({
   selector: 'app-child',
@@ -8,9 +12,14 @@ import {Address} from "src/app/parent/parent.component";
 })
 export class ChildComponent {
 
-  name = 'Victor';
+  @Output() sendGradeEvent = new EventEmitter<Grade>()
 
-  @Input() surname: string = '';
-  // @Input() city: string = '';
-  @Input() address?: Address
+  handleSendEvent() {
+    // const grade = 5;
+    const grade = {
+      math: 5,
+      physic: 4,
+    }
+    this.sendGradeEvent.emit(grade);
+  }
 }
