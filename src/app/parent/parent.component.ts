@@ -24,8 +24,6 @@ export interface Address {
   styleUrls: ['./parent.component.scss']
 })
 export class ParentComponent {
-  // grades: string[] = [];
-
   lessons: Lesson[] = [
     {
       id: 0,
@@ -77,8 +75,12 @@ export class ParentComponent {
     },
   ]
 
-  // getGrade(value: string){
-  //   this.grades.push(value)
-  // }
+  isLoading = true;
+
+  constructor() {
+    setTimeout(() => {
+      this.isLoading = false;
+    }, 3000)
+  }
 
 }
