@@ -1,1 +1,7 @@
-<h1 [ngClass]="{success: isSuccess, error: !isSuccess}">Lorem ipsum</h1>
+<div *ngFor="let fruit of fruits; odd as odd, even as even">
+  <ng-container  *ngIf="fruit.price > 7">
+    <p [ngClass]="{'success': odd, 'error': even, bold: fruit.price >= 15}">
+      {{fruit.name}}, price: {{fruit.price}}
+    </p>
+  </ng-container>
+</div>
