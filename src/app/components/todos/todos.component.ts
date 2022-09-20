@@ -1,19 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import {HttpClient} from "@angular/common/http";
-
-interface Todo {
-  addedDate: string;
-  id: string;
-  order: number;
-  title: string
-}
-
-export interface baseResponse<T = {}> {
-  data: T;
-  message: string[];
-  fieldErrors: string[];
-  resultCode: number;
-}
+import {Component, OnInit} from '@angular/core';
+import {BaseResponse, Todo, TodosService} from "src/app/services/todos.service";
 
 
 @Component({
@@ -25,22 +11,17 @@ export class TodosComponent implements OnInit {
 
   todos: Todo[] = [];
 
-  httpOptions = {
-    withCredentials: true,
-    headers: {
-      'api-key': 'c475897d-e7c6-4b7b-b62d-8534f379a294'
-    },
-  }
 
-  constructor(private http: HttpClient) { }
+
+  constructor(private todoService: TodosService) { }
 
   ngOnInit(): void {
     this.getTodos()
   }
 
   getTodos(){
-    this.http.get<Todo[]>('https://social-network.samuraijs.com/api/1.1/todo-lists', this.httpOptions)
-      .subscribe((res) => {
+    this.todoService.getTodos()
+      .subscribe(res => {
         this.todos = res;
       })
   }
@@ -49,7 +30,7 @@ export class TodosComponent implements OnInit {
     const randomNumber = Math.floor(Math.random() * 100)
     const title = 'Angular-test -' + randomNumber;
 
-    this.http.post<baseResponse<{item: Todo}>>('https://social-network.samuraijs.com/api/1.1/todo-lists', {title}, this.httpOptions)
+    this.todoService.createTodo(title)
       .subscribe(res => {
         const newTodo = res.data.item;
 
@@ -58,10 +39,10 @@ export class TodosComponent implements OnInit {
   }
 
   deleteTodo(){
-    const todoId = 'a1f796b5-ac7f-415e-a67e-02768647f831';
+    const todoId = '37cb440e-8e9d-4dae-93ea-415fac0f9914';
 
-    this.http.delete<baseResponse>(`https://social-network.samuraijs.com/api/1.1/todo-lists/${todoId}`, this.httpOptions)
-      .subscribe(() => {
+    this.todoService.deleteTodo(todoId)
+      .subscribe(()=> {
         this.todos = this.todos.filter(todo => todo.id !== todoId)
       })
   }
