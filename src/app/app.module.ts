@@ -7,6 +7,8 @@ import {ParentComponent} from './parent/parent.component';
 import {ChildComponent} from './parent/child/child.component';
 import {CompAComponent} from './components/comp-a/comp-a.component';
 import {CompBComponent} from './components/comp-b/comp-b.component';
+import { TodosComponent } from './components/todos/todos.component';
+import {HttpClientModule} from "@angular/common/http";
 
 @NgModule({
   declarations: [
@@ -14,11 +16,13 @@ import {CompBComponent} from './components/comp-b/comp-b.component';
     ParentComponent,
     ChildComponent,
     CompAComponent,
-    CompBComponent
+    CompBComponent,
+    TodosComponent
   ],
   imports: [
     BrowserModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
