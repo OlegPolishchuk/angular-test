@@ -31,7 +31,7 @@ export class TodosService {
   constructor(private http: HttpClient) { }
 
   getTodos():Observable<Todo[]>{
-    return this.http.get<Todo[]>(`${environment.baseUrl}/todo-lists`,
+    return this.http.get<Todo[]>(`${environment.baseUrl}/todo-listsS`,
       this.httpOptions)
 
   }

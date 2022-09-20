@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {BaseResponse, Todo, TodosService} from "src/app/services/todos.service";
+import {HttpErrorResponse} from "@angular/common/http";
 
 
 @Component({
@@ -10,8 +11,7 @@ import {BaseResponse, Todo, TodosService} from "src/app/services/todos.service";
 export class TodosComponent implements OnInit {
 
   todos: Todo[] = [];
-
-
+  error = '';
 
   constructor(private todoService: TodosService) { }
 
@@ -21,8 +21,13 @@ export class TodosComponent implements OnInit {
 
   getTodos(){
     this.todoService.getTodos()
-      .subscribe(res => {
-        this.todos = res;
+      .subscribe({
+        next: (res) => {
+          this.todos = res;
+        },
+        error: (err:HttpErrorResponse) => {
+          this.error = err.message;
+        },
       })
   }
 
